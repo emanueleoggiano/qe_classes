@@ -13,6 +13,7 @@ This project was born after I've learned how to write basic Quantum ESPRESSO inp
 - [ ] Create classes for the output files
 
 ### Future updates for the `pwx_input` class
+- [ ] Create a new method called `prepare` to make the `__init__` lighter and safer. `prepare` would do the checks that the `__init__` is doing now
 - [ ] Update the two methods that contains pass inside them
 - [ ] Add the `ATOMIC_SPECIES` method
 - [ ] Add the `ATOMIC_POSITIONS` method
