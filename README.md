@@ -13,9 +13,13 @@ This project was born after I've learned how to write basic Quantum ESPRESSO inp
 - [ ] Create classes for the output files
 
 ### Future updates for the `pwx_input` class
-- [ ] Add the `ATOMIC_SPECIES`  
+- [ ] Update the two methods that contains pass inside them
+- [ ] Add the `ATOMIC_SPECIES` method
+- [ ] Add the `ATOMIC_POSITIONS` method
 - [ ] Add the preview method in order to see how to code will be written in the .in file before creating it
 - [ ] Add the write method in order to write the complete .in file
+- [ ] Add run method to execute the file
+- [ ] Add the `K_POINTS` method
 
 ## Lates Updates
 - [ ] Added the `pwx_input`
