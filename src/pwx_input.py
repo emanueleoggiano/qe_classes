@@ -18,33 +18,41 @@ class ipwx:
     ### Init constructor
     def __init__(self, filename, filedir):
 
-        ### Check if the file extension is correct
-        if not filename.endswith('.in'):
-            raise ValueError('The file {} must have the .in extension!'.format(filename))
-             
-        ### Create the folder if it is not present
-        if not os.path.exists(filedir):
-            os.makedirs(filedir)
-
+        ### Set the variables
         self.filename = filename
         self.filedir = filedir
-
-        ### Full path
-        filepath = os.path.join(self.filedir, self.filename)
-
-        ### Check if the file already exists. Raise an error in that case
-        if os.path.exists(filepath):
-            raise FileExistsError('The file {} already exists in this folder. Create a new one!'.format(self.filename))
-        
-        ### Write the date in which the file has been created
-        with open(filepath, 'w') as file:
-            file.write('! - {}'.format( date.today().strftime('%a %d %b %y') ))
 
         ### Dictionaries for the four main sections
         self.control_dict = { 'restart_mode': 'from_scratch' }
         self.system_dict = {}
         self.electrons_dict = {}
         self.ions_dict = {}
+    ##########
+
+
+    ##########
+    def prepare(self):
+        
+        ### Check if the file extension is correct and check if the filename is in the correct format
+        if not isinstance(self.filename, str) or not self.filename.endswith('.in'):
+            raise ValueError('The file {} is not valid. Please check the name and the extension.'.format(self.filename))
+
+        ### Check if the filedir is in the correct format
+        if not isinstance(self.filedir, str):
+            raise ValueError('The folder {} is not in a string format'.format(self.filedir))
+
+        ### Set the full path
+        self.filepath = os.path.join(self.filedir, self.filename)
+
+        ### Create the folder if it doesn't already exists
+        os.makedirs(self.filedir, exist_ok = True)
+
+        if os.path.exists(self.filepath):
+            raise FileExistsError('The file {} already exists in this folder! Create a new one'.format(self.filepath))
+
+        ### Write the date in which the file has been created
+        with open(self.filepath, 'w') as file:
+            file.write("! Created on: {}\n".format(date.today().strftime('%A, %d %B %Y')))
     ##########
 
 
