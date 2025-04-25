@@ -41,11 +41,11 @@ class ipwx:
         if not isinstance(self.filedir, str):
             raise ValueError('The folder {} is not in a string format'.format(self.filedir))
 
-        ### Set the full path
-        self.filepath = os.path.join(self.filedir, self.filename)
-
         ### Create the folder if it doesn't already exists
         os.makedirs(self.filedir, exist_ok = True)
+
+        ### Set the full path
+        self.filepath = os.path.join(self.filedir, self.filename)
 
         if os.path.exists(self.filepath):
             raise FileExistsError('The file {} already exists in this folder! Create a new one'.format(self.filepath))
